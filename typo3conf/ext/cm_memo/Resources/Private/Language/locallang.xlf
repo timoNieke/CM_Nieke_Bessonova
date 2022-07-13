@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:cm_memo/Resources/Private/Language/locallang.xlf" date="2022-06-22T10:00:45Z" product-name="cm_memo">
+		<header/>
+		<body>
+			<trans-unit id="tx_cmmemo_domain_model_memo" resname="tx_cmmemo_domain_model_memo">
+				<source>Memo</source>
+			</trans-unit>
+			<trans-unit id="tx_cmmemo_domain_model_memo.timestamp" resname="tx_cmmemo_domain_model_memo.timestamp">
+				<source>Timestamp</source>
+			</trans-unit>
+			<trans-unit id="tx_cmmemo_domain_model_memo.title" resname="tx_cmmemo_domain_model_memo.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_cmmemo_domain_model_memo.text" resname="tx_cmmemo_domain_model_memo.text">
+				<source>Text</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

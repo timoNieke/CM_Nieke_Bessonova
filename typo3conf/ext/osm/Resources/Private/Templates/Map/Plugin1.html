@@ -1,0 +1,26 @@
+<f:layout name="Default" />
+
+
+<f:section name="main">
+    <f:if condition="{settings.addresses -> f:count()} > 0">
+        <f:then>
+            <f:render section="map" arguments="{_all}"/>
+        </f:then>
+        <f:else>
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading">Address not given</h4>
+                <p>Given address could not converted into geo coordinates!</p>
+            </div>
+        </f:else>
+    </f:if>
+</f:section>
+
+
+<f:section name="map">
+    <div
+        class="osm-map"
+        data-osm="map"
+        data-osm-markerurl="{f:uri.page(additionalParams: '{type:1597149189,tx_osm_pi1:\'{contentIdentifier:data.uid}\'}')}"
+        data-osm-markergraphics="{f:uri.resource(path: 'Icons/Marker.png')}"
+        data-osm-zoom="{settings.zoom}"></div>
+</f:section>

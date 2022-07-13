@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2020-01-00T12:00:00Z" product-name="osm">
+		<header/>
+		<body>
+			<trans-unit id="pi1.title">
+				<source>OpenStreetMap Individual Addresses</source>
+				<target state="translated">OpenStreetMap individuelle Adressen</target>
+			</trans-unit>
+			<trans-unit id="pi1.description">
+				<source>Show one or more individual addresses on a map</source>
+				<target state="translated">Zeige eine oder mehrere Adressen auf einer Karte</target>
+			</trans-unit>
+			<trans-unit id="pi1.information">
+				<source>Please save content first. Afterwards addresses can be added.</source>
+				<target state="translated">Bitte Seiteninhalt zuerst speichern. Anschließend können Adressen hinzugefügt werden.</target>
+			</trans-unit>
+			<trans-unit id="pi1.settings.addresses">
+				<source>Add address</source>
+				<target state="translated">Adresse hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="pi1.settings.address">
+				<source>Full address</source>
+				<target state="translated">Volle Adresse</target>
+			</trans-unit>
+			<trans-unit id="pi1.settings.latitude">
+				<source>Latitude (alternative to full address)</source>
+				<target state="translated">Breitengrad (alternativ zur vollen Adresse)</target>
+			</trans-unit>
+			<trans-unit id="pi1.settings.longitude">
+				<source>Longitude (alternative to full address)</source>
+				<target state="translated">Längengrad (alternativ zur vollen Adresse)</target>
+			</trans-unit>
+			<trans-unit id="pi1.settings.zoom">
+				<source>Zoom factor</source>
+				<target state="translated">Zoom Faktor</target>
+			</trans-unit>
+			<trans-unit id="pi1.settings.marker">
+				<source>Show this marker</source>
+				<target state="translated">Zeige diesen Marker</target>
+			</trans-unit>
+			<trans-unit id="pi1.settings.markertitle">
+				<source>Title for marker (optional for popup)</source>
+				<target state="translated">Überschrift Marker (optional, für Pop-up)</target>
+			</trans-unit>
+			<trans-unit id="pi1.settings.markerdescription">
+				<source>Description for marker (optional for popup)</source>
+				<target state="translated">Beschreibung Marker (optional, für Pop-up)</target>
+			</trans-unit>
+
+			<trans-unit id="pi2.title">
+				<source>OpenStreetMap address from pool</source>
+				<target state="translated">OpenStreetMap Adressen aus Adresspool</target>
+			</trans-unit>
+			<trans-unit id="pi2.description">
+				<source>Show addresses from tt_address</source>
+				<target state="translated">Zeige Adressen aus tt_address</target>
+			</trans-unit>
+			<trans-unit id="pi2.settings.addresses">
+				<source>Select addresses</source>
+				<target state="translated">Adressen auswählen</target>
+			</trans-unit>
+			<trans-unit id="pi2.settings.zoom">
+				<source>Zoom factor</source>
+				<target state="translated">Zoom Faktor</target>
+			</trans-unit>
+
+			<trans-unit id="pleaseChoose">
+				<source>Please choose...</source>
+				<target state="translated">Bitte auswählen...</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

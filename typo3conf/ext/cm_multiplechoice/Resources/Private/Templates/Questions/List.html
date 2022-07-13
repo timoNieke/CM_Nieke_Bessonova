@@ -1,0 +1,182 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+This template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Questions:
+          List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="content">
+
+    <f:flashMessages />
+
+
+        <f:for each="{questions}" as="questions">
+            <table class="tx_cmmultiplechoice table table-primary" style="width: 70%; margin-left: auto; margin-right: auto;">
+                <tr class="question">
+                    <td>{questions.question}</td>
+                </tr>
+                <f:for each="{questions.questionanswer}" as="answers">
+                    <tr class="questionAnswerTag">
+                        <td>{answers.answer}
+                            <input type="hidden" class="correctAnswer" value="{answers.correct}" />
+                            <input class="form-check-input" style="text-align:right; float:right;" type="checkbox" value="" id="defaultCheck1">
+                        </td>
+                    </tr>
+
+                </f:for>
+            </table>
+        </f:for>
+
+    <input class="btn btn-primary" type="submit" value="Abschicken" style="display:block; margin:auto">
+<script>
+    var ergebnis = 0;// if the submit button is clicked, submit the form
+    document.querySelector('input[type="submit"]').addEventListener('click', function(e) {
+        var questions = document.getElementsByClassName("questionAnswerTag");
+        var rightAnswers = 0;
+        var wrongAnswers = 0;
+        //iterate over all questions
+        for (var i = 0; i < questions.length; i++){
+            underChild = questions[i].firstElementChild;
+            isCorrectAnswer = underChild.children[0];
+            checkedBox = underChild.children[1];
+            if (isCorrectAnswer.value === "1" &&
+                checkedBox.checked === true){
+                rightAnswers++;
+                addRight(underChild);
+            }
+            else if (isCorrectAnswer.value === "" &&
+                checkedBox.checked === false){
+                rightAnswers++;
+                addRight(underChild);
+            }
+            else {
+                addWrong(underChild);
+                wrongAnswers++;
+            }
+        }
+
+        ergebnis = rightAnswers / (rightAnswers + wrongAnswers);
+        //runde ergebnis auf zwei Nachkommastellen
+        ergebnis = Math.round(ergebnis * 100) / 100;
+
+        //add a div before the element "submit"
+        var submit = document.getElementsByClassName("btn btn-primary")[0];
+        //check if a div with class divAlert exists
+        var divAlert = document.getElementsByClassName("divAlert")[0];
+        //if the div already exists, dont create it again
+        if (divAlert === undefined) {
+            var div = document.createElement("div");
+            div.classList.add("alert");
+            div.classList.add("alert-info");
+            div.classList.add("divAlert");
+            // center the text in the div
+            div.style.textAlign = "center";
+            submit.parentNode.insertBefore(div, submit);
+
+            //falls Ergebnis kleiner als 75
+            if (ergebnis < 0.75) {
+                div.innerHTML = "Du hast " + ergebnis * 100 + "% der Fragen richtig beantwortet";
+                //füg einen Zeilenumbruch hinzu
+                div.innerHTML += "<br>";
+                div.innerHTML += "Schau dir nochmal den Beruf genauer an und versuche es nochmal!";
+
+                //delete the button "Abschicken"
+                submit.parentNode.removeChild(submit);
+
+                //create a button to reload the page
+                var button = document.createElement("button");
+                button.classList.add("btn");
+                button.classList.add("btn-primary");
+                button.innerHTML = "Nochmal";
+                button.addEventListener('click', function(e) {
+                    location.reload();
+                });
+                div.parentNode.insertBefore(button, div.nextSibling);
+                button.style.textAlign = "center";
+                button.style.margin = "auto";
+                button.style.display = "block";
+
+                //create a button to reload the page
+                var button2 = document.createElement("button");
+                button2.classList.add("btn");
+                button2.classList.add("btn-primary");
+                button2.innerHTML = "Zu den Ausbildungsberufen";
+                button2.addEventListener('click', function(e) {
+                    //make a link to the page with "localhost/cm-praxis/ausbildungsberufe"
+                    window.location.href = "http://localhost/cm-praxis/ausbildung";
+                });
+                div.parentNode.insertBefore(button2, div.nextSibling);
+                button2.style.textAlign = "center";
+                button2.style.margin = "auto";
+                button2.style.display = "block";
+            } else {
+                div.innerHTML = "Du hast " + ergebnis * 100 + "% der Fragen richtig beantwortet";
+                //füg einen Zeilenumbruch hinzu
+                div.innerHTML += "<br>";
+                div.innerHTML += "Das ist ein super Ergebnis. Ist das vielleicht dein Beruf?";
+                div.innerHTML += "<br>";
+                div.innerHTML += "Nimm gerne mit uns Kontakt auf oder schaue dir noch andere Berufe an!";
+
+                //delete the button "Abschicken"
+                submit.parentNode.removeChild(submit);
+
+                //create a button to reload the page
+                var buttonKontakt = document.createElement("button");
+                buttonKontakt.classList.add("btn");
+                buttonKontakt.classList.add("btn-primary");
+                buttonKontakt.innerHTML = "Kontakt";
+                buttonKontakt.addEventListener('click', function(e) {
+                    //make a link to the page with "localhost/cm-praxis/ausbildungsberufe"
+                    window.location.href = "http://localhost/cm-praxis/kontakt";
+                });
+                div.parentNode.insertBefore(buttonKontakt, div.nextSibling);
+                buttonKontakt.style.textAlign = "center";
+                buttonKontakt.style.margin = "auto";
+                buttonKontakt.style.display = "block";
+
+                //create a button to reload the page
+                var buttonBerufe = document.createElement("button");
+                buttonBerufe.classList.add("btn");
+                buttonBerufe.classList.add("btn-primary");
+                buttonBerufe.innerHTML = "Zu den Ausbildungsberufen";
+                buttonBerufe.addEventListener('click', function(e) {
+                    //make a link to the page with "localhost/cm-praxis/ausbildungsberufe"
+                    window.location.href = "http://localhost/cm-praxis/ausbildung";
+                });
+                div.parentNode.insertBefore(buttonBerufe, div.nextSibling);
+                buttonBerufe.style.textAlign = "center";
+                buttonBerufe.style.margin = "auto";
+                buttonBerufe.style.display = "block";
+            }
+        }
+    });
+
+    function addRight(element){
+        //if element is class of bg-danger, remove it
+        if (element.classList.contains("bg-danger")){
+            element.classList.remove("bg-danger");
+        }
+        element.classList.add("bg-success");
+        element.style.filter = "brightness(110%)";
+    }
+
+    function addWrong(element){
+        //if element is class of bg-success, remove it
+        if (element.classList.contains("bg-success")){
+            element.classList.remove("bg-success");
+        }
+        element.classList.add("bg-danger");
+        element.style.filter = "brightness(110%)";
+    }
+
+</script>
+</f:section>
+</html>
